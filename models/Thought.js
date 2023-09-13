@@ -14,7 +14,7 @@ const thoughtSchema = new Schema(
             type: Date,
             default: Date.now,
         },
-        username: User.username,
+        username: User,
         reactions: [Reaction],
     }
 );
