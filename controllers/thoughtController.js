@@ -1,5 +1,4 @@
-const { User } = require('../models/User');
-const { Thought } = require('../models/Thought');
+const { User, Thought } = require('../models');
 
 module.exports = {
     // Get all thoughts
@@ -94,4 +93,20 @@ module.exports = {
             res.status(500).json(err);
         }
     },
+    async addReaction(req, res) {
+        try {
+
+        } catch (err) {
+            res.status(500).json(err)
+            console.log(err)
+        }
+    },
+    async deleteReaction(req, res) {
+        try {
+
+        } catch (err) {
+            res.status(500).json(err)
+            console.log(err)
+        }
+    }
 }
