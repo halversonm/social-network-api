@@ -95,7 +95,16 @@ module.exports = {
     },
     async addReaction(req, res) {
         try {
-
+            const thought = await Thought.findOneAndUpdate(
+                { _id: req.params.thoughtId },
+                { $addToSet: { reactions: req.body } },
+                { new: true }
+            )
+            if (!thought) {
+                res.status(404).json({ message: "No thought with this ID was found!" })
+                return;
+            }
+            res.status(200).json(thought)
         } catch (err) {
             res.status(500).json(err)
             console.log(err)
@@ -103,7 +112,17 @@ module.exports = {
     },
     async deleteReaction(req, res) {
         try {
-
+            const thought = await Thought.findOneAndUpdate(
+                { _id: req.params.thoughtId },
+                { $pull: { reactions: { reactionId: req.params.reactionId } } },
+                { new: true }
+            )
+            if (!thought) {
+                res.status(404).json({ message: "No thought with this ID was found!" })
+                return;
+            }
+            console.log(thought);
+            res.status(200).json(thought)
         } catch (err) {
             res.status(500).json(err)
             console.log(err)
